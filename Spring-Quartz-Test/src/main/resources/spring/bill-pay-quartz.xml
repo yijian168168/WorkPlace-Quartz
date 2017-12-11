@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        ">
+
+	<!-- 定时任务1 -->
+	<bean name="jobDetailBean1" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value=" com.quartz.test.job.Job1" />
+	</bean>
+	<bean id="jobTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!--<property name="misfireInstruction" value="0" />-->
+		<property name="group" value="group1" />
+		<property name="name" value="name1" />
+		<property name="jobDetail" ref="jobDetailBean1"/>
+		<property name="cronExpression" value="0/10 * * * * ? *"/>
+	</bean>
+
+	<!-- 定时任务2 -->
+	<bean name="jobDetailBean2" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value=" com.quartz.test.job.Job2" />
+	</bean>
+	<bean id="jobTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="group" value="group1" />
+		<property name="name" value="name2" />
+		<property name="jobDetail" ref="jobDetailBean2"/>
+		<property name="cronExpression" value="0/20 * * * * ? *"/>
+	</bean>
+
+	<!-- 定时任务3 -->
+	<bean name="jobDetailBean3" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value=" com.quartz.test.job.Job3" />
+	</bean>
+	<bean id="jobTrigger3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="group" value="group1" />
+		<property name="name" value="name3" />
+		<property name="jobDetail" ref="jobDetailBean3"/>
+		<property name="cronExpression" value="0/30 * * * * ? *"/>
+	</bean>
+
+	<!-- 定时任务4 -->
+	<bean name="jobDetailBean4" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value=" com.quartz.test.job.Job4" />
+	</bean>
+	<bean id="jobTrigger4" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="group" value="group1" />
+		<property name="name" value="name4" />
+		<property name="jobDetail" ref="jobDetailBean4"/>
+		<property name="cronExpression" value="0/40 * * * * ? *"/>
+	</bean>
+	<!-- 调度器 -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+		<property name="triggers">
+			<list>
+				<ref bean="jobTrigger4" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

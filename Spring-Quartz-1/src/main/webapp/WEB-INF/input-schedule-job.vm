@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>添加/修改任务</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form action="save-schedule-job.shtml" method="post">
+    <input type="hidden" name="scheduleJobId" value="$!{QuartzDto.id}">
+    <table>
+        <tr>
+            <td>任务名称</td>
+            <td><input type="text" name="jobName" value="$!{QuartzDto.jobName}"></td>
+        </tr>
+        <tr>
+            <td>任务分组</td>
+            <td><input type="text" name="jobGroup" value="$!{QuartzDto.jobGroup}"></td>
+        </tr>
+        <tr>
+            <td>时间表达式</td>
+            <td><input type="text" name="cronExpression" value="$!{QuartzDto.jobCorn}"></td>
+        </tr>
+        <tr>
+            <td>任务描述</td>
+            <td><input type="text" name="desc" value="$!{QuartzDto.desc}"></td>
+        </tr>
+    </table>
+    <button type="submit">确认</button>
+</form>
+</body>
+</html>
